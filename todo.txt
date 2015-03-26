@@ -12,8 +12,7 @@ retours:
 
 1-régler les soucis de génération (voir avec armel pour confirmation fait)
 2-point central se rapproche du joueur ou maximum sur la camera (voir avec armel pour confirmation fait)
-3-diversité des salles
+3-diversité des salles, rajout de mur ou autres
 4-plusieurs spawner par salles
 5-enemis suivent le joueur
 6-tache de sang en tween
-7-inclinaison caméra quand on bouge
