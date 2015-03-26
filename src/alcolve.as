@@ -16,6 +16,9 @@ package
 		public var X:int = 0;
 		public var Y:int = 0;
 		
+		public var tilesWall:Vector.<Tile> = new Vector.<Tile>();
+		public var TileTemp:Tile;
+		
 		public function alcolve(ID:int, x:Number=0, y:Number=0, graphic:Graphic=null, mask:Mask=null) 
 		{
 			super(x, y, graphic, mask);
@@ -28,6 +31,7 @@ package
 		{
 			X = x;
 			Y = y;
+			
 			//trace("place X:" + X + " Y:" + Y);
 		}
 		
@@ -45,33 +49,28 @@ package
 		
 		public function draw():void
 		{
-			var tilesWall = new Vector.<Tile>();
-			var TileTemp:Tile;
 			
 			var col:int = 0;
 			var row:int = 0;
 			
-			if(_id != 0 && _id != 5)
+			if (_id != 0 && _id != 5)
+			{
 				placeWall();
+			}
 			else if (_id == 5)
 			{
 				putWall();
 			}
-			else
+			
+			for (var z:int = 0; z < tilesWall.length; z++)
 			{
-				return;
+				Level.ref.add(tilesWall[z]);
 			}
 			
-			for (var kk:int = 0; kk < tilesWall.length; kk++)
-			{
-				//trace("tile:" + tiles[k].id);
-				Level.ref.add(tilesWall[kk]);
-			}
 		}
 		
 		public function placeWall():void
 		{
-			var TileTemp:Tile;
 			//gauche
 			for (var j:int = 0; j < 4; j++)
 			{
@@ -85,6 +84,7 @@ package
 				}
 				else
 				{
+					trace("gaucheX" + (X +  0 * 30) + " Y:" + (Y + j * 30));
 					TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -113,7 +113,7 @@ package
 			//bas
 			for (var n:int = 0; n < 3; n++)
 			{
-				TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
+				TileTemp = new Tile(4, X +  n * 30, Y + 3 * 30);
 				TileTemp.type = "mur";
 				tilesWall.push(TileTemp);
 			}
@@ -121,7 +121,8 @@ package
 			//droite
 			for (var l:int = 0; l < 4; l++)
 			{
-				TileTemp = new Tile(6, X +  9 * 30, Y + l * 30);
+				trace("droiteX" + (X +  0 * 30) + " Y:" + (Y + j * 30));
+				TileTemp = new Tile(6, X +  2 * 30, Y + l * 30);
 				TileTemp.type = "mur";
 				tilesWall.push(TileTemp);
 			}

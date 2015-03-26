@@ -70,7 +70,7 @@ package
 			
 			graphic = player;
 			
-			setHitbox(player.width, player.height);
+			setHitbox(player.width / 2, player.height / 2);
 			centerOrigin();
 			
 			type = "player";

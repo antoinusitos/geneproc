@@ -99,12 +99,12 @@ package
 			for (var k:int = 0; k < 100; k++)
 			{
 				//trace("tile:" + tiles[k].id);
-				Level.ref.add(tiles[k]);
+				Level.ref.add(tiles[k]).visible = false;
 			}
 			for (var kk:int = 0; kk < tilesWall.length; kk++)
 			{
 				//trace("tile:" + tiles[k].id);
-				Level.ref.add(tilesWall[kk]);
+				Level.ref.add(tilesWall[kk]).visible = false;
 			}
 			
 			//for (var kkk:int = 11; kkk < 12; kk++)
@@ -113,8 +113,13 @@ package
 				Level.ref.add(mobi);
 			//}
 			
-			var alco:alcolve = new alcolve(_alcolve);
+			var alco:alcolve = new alcolve(2);
 			
+			alco.placeAlcolve(X, Y);
+
+			alco.rotato
+			
+			alco.draw();
 		}
 		
 		public function placeWall():void
