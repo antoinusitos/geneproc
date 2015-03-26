@@ -1,0 +1,5 @@
+-interaction decors
+-placement objet
+-ramassage arme
+-drop arme
+-creation decors
