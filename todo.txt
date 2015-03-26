@@ -15,3 +15,5 @@ retours:
 3-diversité des salles
 4-plusieurs spawner par salles
 5-enemis suivent le joueur
+6-tache de sang en tween
+7-inclinaison caméra quand on bouge

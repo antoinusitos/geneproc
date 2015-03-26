@@ -156,6 +156,8 @@ package
 						x += speed;
 						move = true;
 					}
+					
+					FP.screen.angle = 0.5;
 				}
 				else if (Input.check(Key.LEFT)) 
 				{
@@ -169,6 +171,8 @@ package
 						x -= speed;
 						move = true;
 					}
+					
+					FP.screen.angle = -0.5;
 				}
 				
 				if (Input.check(Key.UP)) 
@@ -183,6 +187,7 @@ package
 						y -= speed;
 						move = true;
 					}
+					FP.screen.angle = 0;
 				}
 				else if (Input.check(Key.DOWN)) 
 				{
@@ -196,6 +201,7 @@ package
 						y += speed;
 						move = true;
 					}
+					FP.screen.angle = 0;
 				}
 				
 				if (move && ! isReloading)

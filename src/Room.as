@@ -99,12 +99,12 @@ package
 			for (var k:int = 0; k < 100; k++)
 			{
 				//trace("tile:" + tiles[k].id);
-				Level.ref.add(tiles[k]).visible = false;
+				Level.ref.add(tiles[k]);
 			}
 			for (var kk:int = 0; kk < tilesWall.length; kk++)
 			{
 				//trace("tile:" + tiles[k].id);
-				Level.ref.add(tilesWall[kk]).visible = false;
+				Level.ref.add(tilesWall[kk]);
 			}
 			
 			//for (var kkk:int = 11; kkk < 12; kk++)
@@ -113,11 +113,76 @@ package
 				Level.ref.add(mobi);
 			//}
 			
-			var alco:alcolve = new alcolve(2);
+			var coin:int = Math.random() * 4;
 			
-			alco.placeAlcolve(X, Y);
-
-			alco.rotato
+			var alco:alcolve;
+			trace("id" + _id);
+			trace("coin" + coin);
+			
+			if (coin == 0)
+			{
+				var r:int = Math.random() * 2;
+				if (r == 0)
+				{
+					trace(r);
+					alco = new alcolve(2, 1, 2);
+				}
+				else if (r == 1)
+				{
+					trace(r);
+					alco = new alcolve(2, 2, 2);
+				}
+				
+				alco.placeAlcolve(X, Y);
+			}
+			else if (coin == 1)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					trace(r);
+					alco = new alcolve(2, 1, 2);
+					alco.placeAlcolve(X+(7*30), Y);
+				}
+				else if (r == 1)
+				{
+					trace(r);
+					alco = new alcolve(2, 2, 1);
+					alco.placeAlcolve(X + (7 * 30), Y);
+				}
+			}
+			else if (coin == 2)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					trace(r);
+					alco = new alcolve(2, 1, 1);
+					alco.placeAlcolve(X, Y+(6*30));
+				}
+				else if (r == 1)
+				{
+					trace(r);
+					alco = new alcolve(2, 2, 2);
+					alco.placeAlcolve(X, Y + (7 * 30));
+				}
+			}
+			else if (coin == 3)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					trace(r);
+					alco = new alcolve(2, 1, 1);
+					alco.placeAlcolve(X+(7*30), Y+(6*30));
+				}
+				else if (r == 1)
+				{
+					trace(r);
+					alco = new alcolve(2, 2, 1);
+					alco.placeAlcolve(X + (7 * 30), Y + (7 * 30));
+				}
+			}
 			
 			alco.draw();
 		}
@@ -134,24 +199,6 @@ package
 				}
 				else
 				{
-					/*if (j == 0)
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (j == 9)
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -167,18 +214,6 @@ package
 				}
 				else
 				{
-					/*if (k == 9)
-					{
-						TileTemp = new Tile(9, X +  k * 30, Y + 0 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(5, X +  k * 30, Y + 0 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(5, X +  k * 30, Y + 0 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -194,24 +229,6 @@ package
 				}
 				else
 				{
-					/*if (n == 0)
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (n == 9)
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -227,24 +244,6 @@ package
 				}
 				else
 				{
-					/*if (l == 0)
-					{
-						TileTemp = new Tile(9, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (l == 9)
-					{
-						TileTemp = new Tile(11, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(6, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(6, X +  9 * 30, Y + l * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
