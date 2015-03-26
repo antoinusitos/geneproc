@@ -159,13 +159,13 @@ package
 				//gauche
 				if (_type == 1)
 				{
-					for (var j:int = 0; j < 3; j++)
+					for (var jj:int = 0; jj < 3; jj++)
 					{
-						if (sortie == 1 && (j == 0 || j == 1)) { }
-						else if (sortie == 2 && (j == 2 || j == 1)) { }
+						if (sortie == 1 && (jj == 0 || jj == 1)) { }
+						else if (sortie == 2 && (jj == 2 || jj == 1)) { }
 						else
 						{
-							TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
+							TileTemp = new Tile(7, X +  0 * 30, Y + jj * 30);
 							TileTemp.type = "mur";
 							tilesWall.push(TileTemp);
 						}
@@ -173,27 +173,27 @@ package
 				}
 				else if (_type == 2)
 				{
-					for (var j:int = 0; j < 3; j++)
+					for (var jjj:int = 0; jjj < 3; jjj++)
 					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
+						TileTemp = new Tile(7, X +  0 * 30, Y + jjj * 30);
 						TileTemp.type = "mur";
 						tilesWall.push(TileTemp);
 					}
 				}
 				
 				//haut
-				for (var k:int = 0; k < 4; k++)
+				for (var kkk:int = 0; kkk < 4; kkk++)
 				{
 					
-					TileTemp = new Tile(5, X +  k * 30, Y + 0 * 30);
+					TileTemp = new Tile(5, X +  kkk * 30, Y + 0 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
 				}
 				
 				//bas
-				for (var n:int = 0; n < 4; n++)
+				for (var nnn:int = 0; nnn < 4; nnn++)
 				{
-					TileTemp = new Tile(4, X +  n * 30, Y + 2 * 30);
+					TileTemp = new Tile(4, X +  nnn * 30, Y + 2 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
 				}
@@ -201,9 +201,9 @@ package
 				//droite
 				if (_type == 1)
 				{
-					for (var l:int = 0; l < 3; l++)
+					for (var lll:int = 0; lll < 3; lll++)
 					{
-						TileTemp = new Tile(6, X +  3 * 30, Y + l * 30);
+						TileTemp = new Tile(6, X +  3 * 30, Y + lll * 30);
 						TileTemp.type = "mur";
 						tilesWall.push(TileTemp);
 					}
