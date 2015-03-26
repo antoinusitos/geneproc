@@ -207,8 +207,8 @@ package
 					player.play("idle");
 				}
 				
-				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)) + ((FP.screen.mouseX) / 50);
-				FP.camera.y = (y - FP.halfHeight - (FP.halfHeight - FP.screen.mouseY)) + ((FP.screen.mouseY) / 50);
+				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)/2) + ((FP.screen.mouseX) / 50);
+				FP.camera.y = (y - FP.halfHeight - (FP.halfHeight - FP.screen.mouseY)/2) + ((FP.screen.mouseY) / 50);
 				
 				player.angle = FP.angle(FP.halfWidth , FP.halfHeight, Input.mouseX, Input.mouseY) - 90;
 				

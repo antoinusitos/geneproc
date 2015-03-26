@@ -50,10 +50,10 @@ package
 			_tabRoom.push(temp);
 			temp = new Room(2, 0, 1, 0, 1);
 			_tabRoom.push(temp);
-			temp = new Room(2, 0, 1, 0, 0);
+			/*temp = new Room(2, 0, 1, 0, 0);
 			_tabRoom.push(temp);
 			temp = new Room(2, 0, 0, 0, 1);
-			_tabRoom.push(temp);
+			_tabRoom.push(temp);*/
 			
 			//piece 3
 			temp = new Room(3, 0, 0, 1, 1);
@@ -64,13 +64,18 @@ package
 			_tabRoom.push(temp);
 			
 			//piece 4
+			//T, R, B, L
 			temp = new Room(4, 1, 0, 1, 1);
 			_tabRoom.push(temp);
 			temp = new Room(4, 1, 0, 1, 0);
 			_tabRoom.push(temp);
+			temp = new Room(4, 1, 0, 0, 0);
+			_tabRoom.push(temp);
 			temp = new Room(4, 1, 0, 0, 1);
 			_tabRoom.push(temp);
 			temp = new Room(4, 0, 0, 1, 1);
+			_tabRoom.push(temp);
+			temp = new Room(4, 0, 0, 0, 1);
 			_tabRoom.push(temp);
 			temp = new Room(4, 0, 0, 1, 0);
 			_tabRoom.push(temp);
@@ -124,8 +129,8 @@ package
 			_tabRoom.push(temp);
 			temp = new Room(8, 1, 0, 0, 0);
 			_tabRoom.push(temp);
-			temp = new Room(8, 0, 0, 0, 0);
-			_tabRoom.push(temp);
+			/*temp = new Room(8, 0, 0, 0, 0);
+			_tabRoom.push(temp);*/
 			
 			//piece 9
 			temp = new Room(9, 1, 1, 0, 1);

@@ -20,6 +20,8 @@ package
 		public var _B:int;
 		public var _L:int;
 		
+		public var _alcolve:int;
+		
 		public var X:int = 0;
 		public var Y:int = 0;
 		
@@ -32,6 +34,17 @@ package
 			_R = r;
 			_B = b;
 			_L = l;
+		}
+		
+		public function addAlcolve(alc:int):void
+		{
+			_alcolve = alc;
+			
+		}
+		
+		public function printRoom():void
+		{
+			//trace("room:"+_id+",T:"+_T+",R:"+_R+",B:"+_B+",L:"+_L);
 		}
 		
 		public function placeRoom(x:int, y:int):void
@@ -99,6 +112,9 @@ package
 				var mobi:Mobilier = new Mobilier(X+30, Y +30);
 				Level.ref.add(mobi);
 			//}
+			
+			var alco:alcolve = new alcolve(_alcolve);
+			
 		}
 		
 		public function placeWall():void
