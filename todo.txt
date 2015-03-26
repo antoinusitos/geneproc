@@ -3,3 +3,13 @@
 -ramassage arme
 -drop arme
 -creation decors
+
+
+
+
+retours:
+
+-point central se rapproche du joueur ou maximum sur la camera
+-diversité des salles
+-plusieurs spawner par salles
+-enemis suivent le joueur
