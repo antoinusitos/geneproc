@@ -50,30 +50,6 @@ package
 			
 			player = new Player(150, 150);
 			add(player);
-			
-			var rowi:int= 0;
-			var coli:int= 0;
-			var enemy:Enemy;
-			var index:int = 0;
-
-			for (var hh:int = 0; hh < 25; hh++)
-			{
-				if (hh != 0)
-				{	
-					if (Math.random() * 3 < 2)
-					{
-						enemy = new Enemy(index, (coli * 300) + 150, (rowi * 300) + 150);
-						index++;
-						add(enemy);
-					}
-				}
-				rowi ++;
-				if (rowi == 5)
-				{
-					coli ++;
-					rowi = 0;
-				}
-			}
 		}
 		
 		override public function update():void 
@@ -653,6 +629,8 @@ package
 				var room:Room ;
 				var row:int = 0;
 				var col:int = 0;
+				var enemy:Enemy;
+				var indexEnemy:int = 0;
 				for (var h:int = 0; h < _level.length; h++)
 				{
 					room = _generator.RecreateRoom(_level[h]._id, _level[h]._T, _level[h]._R, _level[h]._B, _level[h]._L);
@@ -664,6 +642,17 @@ package
 					{
 						col ++;
 						row = 0;
+					}
+					
+					if (h != 0)
+					{	
+						if (Math.random() * 3 < 2)
+						{
+							var pos:int = Math.random() * 4;
+							enemy = new Enemy(index, room.spawns[pos].x, room.spawns[pos].y);
+							indexEnemy++;
+							add(enemy);
+						}
 					}
 				}
 		}

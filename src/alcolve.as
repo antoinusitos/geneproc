@@ -59,7 +59,6 @@ package
 			if (_id != 0 && _id != 5)
 			{
 				placeWall();
-				trace("place wall");
 			}
 			else if (_id == 5)
 			{
@@ -76,7 +75,7 @@ package
 		public function placeWall():void
 		{
 			var sortie:int = Math.random() * 2 +1;
-			trace("sortie"+sortie);
+
 			if (_orientation == 1)
 			{
 				//gauche

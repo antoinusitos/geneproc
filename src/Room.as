@@ -1,5 +1,6 @@
 package  
 {
+	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.Mask;
 	import net.flashpunk.Graphic;
@@ -25,6 +26,8 @@ package
 		public var X:int = 0;
 		public var Y:int = 0;
 		
+		public var spawns:Vector.<Point>;
+		
 		public function Room(ID:int,  t:int, r:int, b:int, l:int, x:Number = 0, y:Number = 0, graphic:Graphic = null, mask:Mask = null) 
 		{
 			super(x, y, graphic, mask);
@@ -34,6 +37,9 @@ package
 			_R = r;
 			_B = b;
 			_L = l;
+		
+			spawns = new Vector.<Point>();
+			
 		}
 		
 		public function addAlcolve(alc:int):void
@@ -51,6 +57,16 @@ package
 		{
 			X = x;
 			Y = y;
+			
+			var point:Point = new Point(X + 60, Y + 60);
+			spawns.push(point);
+			point = new Point(X + 240, Y + 60);
+			spawns.push(point);
+			point = new Point(X + 60, Y + 240);
+			spawns.push(point);
+			point = new Point(X + 240, Y + 240);
+			spawns.push(point);
+			
 			//trace("place X:" + X + " Y:" + Y);
 		}
 		
@@ -116,20 +132,16 @@ package
 			var coin:int = Math.random() * 4;
 			
 			var alco:alcolve;
-			trace("id" + _id);
-			trace("coin" + coin);
 			
 			if (coin == 0)
 			{
 				var r:int = Math.random() * 2;
 				if (r == 0)
 				{
-					trace(r);
 					alco = new alcolve(2, 1, 2);
 				}
 				else if (r == 1)
 				{
-					trace(r);
 					alco = new alcolve(2, 2, 2);
 				}
 				
@@ -140,13 +152,11 @@ package
 				r = Math.random() * 2;
 				if (r == 0)
 				{
-					trace(r);
 					alco = new alcolve(2, 1, 2);
 					alco.placeAlcolve(X+(7*30), Y);
 				}
 				else if (r == 1)
 				{
-					trace(r);
 					alco = new alcolve(2, 2, 1);
 					alco.placeAlcolve(X + (7 * 30), Y);
 				}
@@ -156,13 +166,11 @@ package
 				r = Math.random() * 2;
 				if (r == 0)
 				{
-					trace(r);
 					alco = new alcolve(2, 1, 1);
 					alco.placeAlcolve(X, Y+(6*30));
 				}
 				else if (r == 1)
 				{
-					trace(r);
 					alco = new alcolve(2, 2, 2);
 					alco.placeAlcolve(X, Y + (7 * 30));
 				}
@@ -172,13 +180,11 @@ package
 				r = Math.random() * 2;
 				if (r == 0)
 				{
-					trace(r);
 					alco = new alcolve(2, 1, 1);
 					alco.placeAlcolve(X+(7*30), Y+(6*30));
 				}
 				else if (r == 1)
 				{
-					trace(r);
 					alco = new alcolve(2, 2, 1);
 					alco.placeAlcolve(X + (7 * 30), Y + (7 * 30));
 				}

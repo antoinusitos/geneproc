@@ -16,3 +16,6 @@ retours:
 4-plusieurs spawner par salles
 5-enemis suivent le joueur
 6-tache de sang en tween
+7-enemy me voit
+8-collisions mal placés
+9-enemy ne tirent pas tous
