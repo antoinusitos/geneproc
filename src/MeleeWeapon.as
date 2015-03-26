@@ -18,7 +18,7 @@ package
 		public var destination:Point;
 		public var speed:Number;
 		
-		public var shoot:Sfx  = new Sfx (Embed.SHOOT);
+		public var shoot:Sfx  = new Sfx (Embed.MELEE);
 		
 		public function MeleeWeapon(x:Number=0, y:Number=0, graphic:Graphic=null, mask:Mask=null) 
 		{

@@ -16,6 +16,7 @@ package
 	public class Enemy extends Entity 
 	{
 		public var enemy:Spritemap = new Spritemap(Embed.PLAYER, 20, 20);
+		public var spr_dead:Spritemap = new Spritemap(Embed.DEAD, 20, 40);
 		public var img:Image;
 		public var shooting:Boolean;
 		public var detected:Boolean;
@@ -41,10 +42,13 @@ package
 		{
 			super.added();
 
-			enemy.add("idle", [0], 1, false);
-			enemy.add("dead", [1], 1, false);
+			enemy.add("idle", [4], 1, false);
+			
+			spr_dead.add("idle", [1], 1, false);
 			
 			enemy.centerOrigin();
+			
+			spr_dead.centerOrigin();
 			
 			graphic = enemy;
 			
@@ -54,6 +58,8 @@ package
 			enemy.angle = Math.random() * 360;
 			
 			type = "enemy";
+			
+			layer = 1
 		}
 		
 		override public function update():void 
@@ -62,7 +68,7 @@ package
 			
 			if (!dead)
 			{
-			
+				enemy.play("idle");
 				if (!canShoot)
 				{
 					time ++;
@@ -77,12 +83,16 @@ package
 				if (collide("bullet", x, y) != null)
 				{
 					dead = true;
-					enemy.play("dead");
+					graphic = spr_dead;
+					setHitbox();
+					spr_dead.angle = Math.random() * 180;
 				}
 				else if (collide("melee", x, y) != null)
 				{
 					dead = true;
-					enemy.play("dead");
+					graphic = spr_dead;
+					setHitbox();
+					spr_dead.angle = Math.random() * 180;
 				}
 			
 				var player:Player = Level.ref.player;
@@ -147,6 +157,8 @@ package
 			var dy:Number=-1*distance*Math.sin(radians);
 
 			var bullet:EnemyBullet = new EnemyBullet(id, x, y);
+			bullet.originBulletX = x;
+			bullet.originBulletY = y;
 			bullet.destination = new Point(x + dx,y+dy);
 			bullet.ShootDuration = distance / bullet.speed;
 			Level.ref.add(bullet);

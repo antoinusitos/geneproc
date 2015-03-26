@@ -19,6 +19,7 @@ package
 	public class Player extends Entity 
 	{
 		public var player:Spritemap = new Spritemap(Embed.PLAYER, 20, 20);
+		public var spr_dead:Spritemap = new Spritemap(Embed.DEAD, 20, 40);
 		
 		public var speed:int;
 		
@@ -32,6 +33,11 @@ package
 		public var weapon:int; // 0=melee 1=range
 		
 		public var dead:Boolean;
+		public var move:Boolean;
+		
+		public var shake: Number;
+		public var shakeAmount : Number;
+		public var decreaseFactor : Number;
 		
 		public function Player(x:Number=0, y:Number=0, graphic:Graphic=null, mask:Mask=null) 
 		{
@@ -42,7 +48,11 @@ package
 			cooldown = 10;
 			isReloading = false;
 			dead = false;
+			move = false;
 			weapon = 0;
+			shake = 0;
+			shakeAmount = 0.7;
+			decreaseFactor = 3;
 		}
 		
 		override public function added():void 
@@ -50,7 +60,11 @@ package
 			super.added();
 			
 			player.add("idle", [0], 1, false);
-			player.add("dead", [1], 1, false);
+			player.add("hit", [5, 0], 5, true);
+			player.add("walk", [1, 0, 2, 0], 10, true);
+			player.add("dead", [3], 1, false);
+			
+			spr_dead.add("idle", [0], 1, false);
 			
 			player.centerOrigin();
 			
@@ -72,7 +86,9 @@ package
 				if (collide("enemybullet", x, y) != null)
 				{
 					dead = true;
-					player.play("dead");
+					graphic = spr_dead;
+					var Thebullet:EnemyBullet = EnemyBullet(collide("enemybullet", x, y));
+					spr_dead.angle = FP.angle(FP.halfWidth , FP.halfHeight, Thebullet.originBulletX, Thebullet.originBulletY);
 					TweenMax.delayedCall(1, die);
 				}
 			
@@ -92,7 +108,7 @@ package
 					if (weapon == 0)
 					{
 						var random:Number = Math.random() * 20;
-						var radian:Number=(player.angle+80+random)*Math.PI/180;
+						var radian:Number=(player.angle+90+random)*Math.PI/180;
 						var dist:Number=30; 
 						var distx:Number=dist*Math.cos(radian);
 						var disty:Number=-1*dist*Math.sin(radian);
@@ -104,6 +120,8 @@ package
 						TweenMax.to(knife, dist / knife.speed, { x:x + distx , y:y + disty  } );
 						canShoot = false;
 						isReloading = true;
+						shake = 0.5;
+						player.play("hit");
 					}
 					else if (weapon == 1)
 					{
@@ -120,14 +138,23 @@ package
 						TweenMax.to(bullet, distance / bullet.speed, { x:x + dx , y:y + dy  } );
 						canShoot = false;
 						isReloading = true;
+						shake = 1;
 					}
 				}
+				
+				move = false;
 				
 				if (Input.check(Key.RIGHT)) 
 				{
 					if (collide("mur",x+speed,y)==null && collide("enemy",x+speed,y)==null) 
 					{
 						x += speed;
+						move = true;
+					}
+					else if (collide("enemy", x + speed, y) != null && Enemy(collide("enemy", x + speed, y)).dead == true)
+					{
+						x += speed;
+						move = true;
 					}
 				}
 				else if (Input.check(Key.LEFT)) 
@@ -135,6 +162,12 @@ package
 					if (collide("mur",x-speed,y)==null && collide("enemy",x-speed,y)==null) 
 					{
 						x -= speed;
+						move = true;
+					}
+					else if (collide("enemy",x-speed,y) != null && Enemy(collide("enemy",x-speed,y)).dead == true)
+					{
+						x -= speed;
+						move = true;
 					}
 				}
 				
@@ -143,6 +176,12 @@ package
 					if (collide("mur",x,y - speed)==null && collide("enemy",x,y - speed)==null) 
 					{
 						y -= speed;
+						move = true;
+					}
+					else if (collide("enemy",x,y - speed)!= null && Enemy(collide("enemy",x,y - speed)).dead == true)
+					{
+						y -= speed;
+						move = true;
 					}
 				}
 				else if (Input.check(Key.DOWN)) 
@@ -150,12 +189,42 @@ package
 					if (collide("mur",x,y + speed)==null && collide("enemy",x,y + speed)==null) 
 					{
 						y += speed;
+						move = true;
+					}
+					else if (collide("enemy",x,y + speed) != null && Enemy(collide("enemy",x,y + speed)).dead == true)
+					{
+						y += speed;
+						move = true;
 					}
 				}
+				
+				if (move && ! isReloading)
+				{
+					player.play("walk");
+				}
+				else if(!isReloading)
+				{
+					player.play("idle");
+				}
+				
 				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)) + ((FP.screen.mouseX) / 50);
 				FP.camera.y = (y - FP.halfHeight - (FP.halfHeight - FP.screen.mouseY)) + ((FP.screen.mouseY) / 50);
 				
 				player.angle = FP.angle(FP.halfWidth , FP.halfHeight, Input.mouseX, Input.mouseY) - 90;
+				
+				if (shake > 0) {
+					var maxNum:Number = 1;
+					var minNum:Number = -1;
+					var randomX:Number = ((Math.random() * (maxNum - minNum )) + minNum) * shakeAmount;
+					FP.camera.x = FP.camera.x + randomX;
+					var randomY:Number = ((Math.random() * (maxNum - minNum )) + minNum) * shakeAmount;
+					FP.camera.y = FP.camera.y + randomY;
+					shake -= FP.elapsed * decreaseFactor;
+				  } 
+				  else 
+				  {
+					shake = 0.0;
+				  }
 			}
 			
 		}

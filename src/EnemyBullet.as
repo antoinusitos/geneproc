@@ -19,6 +19,8 @@ package
 		public var destination:Point;
 		public var speed:Number;
 		public var id:int;
+		public var originBulletX:Number;
+		public var originBulletY:Number;
 		
 		public var shoot:Sfx  = new Sfx (Embed.SHOOT);
 		

@@ -61,6 +61,7 @@ package
 				setHitbox(6, 30, 15, 15);
 			}
 			
+			layer = 2;
 			
 			map.play("sol" + id);
 
