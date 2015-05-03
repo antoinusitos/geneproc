@@ -26,6 +26,7 @@ package
 		public var canShoot:Boolean;
 		public var time:int;
 		public var cooldown:int;
+		var isSeeing:seenPlayer;
 		
 		public function Enemy(Id:int,  x:Number = 0, y:Number = 0, graphic:Graphic = null, mask:Mask = null) 
 		{
@@ -115,7 +116,25 @@ package
 						var anglePE:Number = FP.angle(x, y, player.x, player.y) - 90;
 						if (enemy.angle + 50 > anglePE && enemy.angle - 50 < anglePE)
 						{
-							detected = true;
+							if (canShoot)
+							{
+								if (isSeeing == null)
+								{
+									isSeeing = new seenPlayer(x, y);
+									Level.ref.add(isSeeing);
+								}
+								else
+								{
+									if (isSeeing.see == true)
+									{
+										detected = true;
+									}
+									else
+									{
+										canShoot = false;
+									}
+								}
+							}
 						}
 					}
 					else if (canShoot)

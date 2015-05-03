@@ -70,7 +70,7 @@ package
 			
 			graphic = player;
 			
-			setHitbox(player.width, player.height);
+			setHitbox(player.width / 2, player.height / 2);
 			centerOrigin();
 			
 			type = "player";
@@ -156,6 +156,7 @@ package
 						x += speed;
 						move = true;
 					}
+					TweenMax.to(FP.screen, 1, { angle : 0.5 } );
 				}
 				else if (Input.check(Key.LEFT)) 
 				{
@@ -169,6 +170,7 @@ package
 						x -= speed;
 						move = true;
 					}
+					TweenMax.to(FP.screen, 1, { angle : -0.5 } );
 				}
 				
 				if (Input.check(Key.UP)) 
@@ -183,6 +185,7 @@ package
 						y -= speed;
 						move = true;
 					}
+					TweenMax.to(FP.screen, 1, { angle : 0 } );
 				}
 				else if (Input.check(Key.DOWN)) 
 				{
@@ -196,6 +199,7 @@ package
 						y += speed;
 						move = true;
 					}
+					TweenMax.to(FP.screen, 1, { angle : 0 } );
 				}
 				
 				if (move && ! isReloading)
@@ -207,8 +211,8 @@ package
 					player.play("idle");
 				}
 				
-				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)) + ((FP.screen.mouseX) / 50);
-				FP.camera.y = (y - FP.halfHeight - (FP.halfHeight - FP.screen.mouseY)) + ((FP.screen.mouseY) / 50);
+				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)/2) + ((FP.screen.mouseX) / 50);
+				FP.camera.y = (y - FP.halfHeight - (FP.halfHeight - FP.screen.mouseY)/2) + ((FP.screen.mouseY) / 50);
 				
 				player.angle = FP.angle(FP.halfWidth , FP.halfHeight, Input.mouseX, Input.mouseY) - 90;
 				

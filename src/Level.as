@@ -50,37 +50,13 @@ package
 			
 			player = new Player(150, 150);
 			add(player);
-			
-			var rowi:int= 0;
-			var coli:int= 0;
-			var enemy:Enemy;
-			var index:int = 0;
-
-			for (var hh:int = 0; hh < 25; hh++)
-			{
-				if (hh != 0)
-				{	
-					if (Math.random() * 3 < 2)
-					{
-						enemy = new Enemy(index, (coli * 300) + 150, (rowi * 300) + 150);
-						index++;
-						add(enemy);
-					}
-				}
-				rowi ++;
-				if (rowi == 5)
-				{
-					coli ++;
-					rowi = 0;
-				}
-			}
 		}
 		
 		override public function update():void 
 		{
 			super.update();
 			
-			if (Input.released(Key.SPACE))
+			if (Input.check(Key.SPACE))
 			{
 				FP.world = new Level;
 			}
@@ -115,6 +91,8 @@ package
 			var X:int = 0;
 			var Y:int = 0;
 			
+			var randAlcolve:int;
+			
 			//********************ROOM 1 *********************
 			
 			//recherche des rooms N1 et ajout dans le tableau tab
@@ -130,6 +108,7 @@ package
 			var rand:int = Math.random() * tab.length;
 			
 			//ajout de la room 1 dans le tableau definitif
+			tab[rand].printRoom();
 			_level.push(tab[rand]);
 			_level[index].placeRoom(X, Y);
 			
@@ -153,15 +132,21 @@ package
 				{
 					if (_generator._tabRoom[a]._id == 5)
 					{
-						if(_generator._tabRoom[a]._T == charactB)
+						if (_generator._tabRoom[a]._T == charactB)
+						{
 							tab.push( _generator._tabRoom[a]);
+						}
 					}
 				}
 			
 				//selecton entre les rooms 5
 				rand = Math.random() * tab.length;
 				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 5 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -190,8 +175,12 @@ package
 			
 			//selecton entre les rooms 7
 			rand = Math.random() * tab.length;
-				
+			
+			randAlcolve = Math.random() * 6;
+			
 			//ajout de la room 7 dans le tableau definitif
+			tab[rand].printRoom();
+			tab[rand].addAlcolve(randAlcolve);
 			_level.push(tab[rand]);
 			_level[index].placeRoom(X, Y);
 			
@@ -224,8 +213,12 @@ package
 				
 				//selecton entre les rooms 2
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 2 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -258,7 +251,12 @@ package
 					
 					//selecton entre les rooms 6
 					rand = Math.random() * tab.length;
+					
+					randAlcolve = Math.random() * 6;
+					
 					//ajout de la room 6 dans le tableau definitif
+					tab[rand].printRoom();
+					tab[rand].addAlcolve(randAlcolve);
 					_level.push(tab[rand]);
 					_level[index].placeRoom(X, Y);
 					
@@ -289,8 +287,12 @@ package
 				
 				//selecton entre les rooms 9
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 9 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -319,8 +321,12 @@ package
 				
 				//selecton entre les rooms 2
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 2 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -353,6 +359,8 @@ package
 					rand = Math.random() * tab.length;
 						
 					//ajout de la room 6 dans le tableau definitif
+					tab[rand].printRoom();
+					tab[rand].addAlcolve(randAlcolve);
 					_level.push(tab[rand]);
 					_level[index].placeRoom(X, Y);
 					
@@ -383,8 +391,12 @@ package
 				
 				//selecton entre les rooms 9
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 9 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -413,8 +425,12 @@ package
 				
 				//selecton entre les rooms 2
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 2 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -445,8 +461,12 @@ package
 					
 					//selecton entre les rooms 6
 					rand = Math.random() * tab.length;
-						
+					
+					randAlcolve = Math.random() * 6;
+					
 					//ajout de la room 6 dans le tableau definitif
+					tab[rand].printRoom();
+					tab[rand].addAlcolve(randAlcolve);
 					_level.push(tab[rand]);
 					_level[index].placeRoom(X, Y);
 					
@@ -477,8 +497,12 @@ package
 				
 				//selecton entre les rooms 9
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 9 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -507,8 +531,12 @@ package
 				
 				//selecton entre les rooms 3
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 3 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -526,21 +554,35 @@ package
 					
 					charactR = _level[index - 5]._R;
 					charactB = _level[index - 1]._B;
+					var prevR:int = Math.random() * 2;
+					if (index == 23)
+					{
+						prevR = 1;
+					}
+					else if (charactR == 0 && charactB == 0)
+					{
+						prevR = 1;
+					}
 					
 					//recherche des rooms N4 et ajout dans le tableau tab
 					for ( var y:int= 0; y < _generator._tabRoom.length; y++)
 					{
 						if (_generator._tabRoom[y]._id == 4)
 						{
-							if(_generator._tabRoom[y]._L == charactR && _generator._tabRoom[y]._T == charactB)
+							//trace("charactR:" + charactR + " charactB:" + charactB + " prevR:" + prevR);
+							if(_generator._tabRoom[y]._L == charactR && _generator._tabRoom[y]._T == charactB && _generator._tabRoom[y]._B == prevR)
 								tab.push( _generator._tabRoom[y]);
 						}
 					}
 					
 					//selecton entre les rooms 4
 					rand = Math.random() * tab.length;
-						
+					
+					randAlcolve = Math.random() * 6;
+					
 					//ajout de la room 4 dans le tableau definitif
+					tab[rand].printRoom();
+					tab[rand].addAlcolve(randAlcolve);
 					_level.push(tab[rand]);
 					_level[index].placeRoom(X, Y);
 					
@@ -571,8 +613,12 @@ package
 				
 				//selecton entre les rooms 8
 				rand = Math.random() * tab.length;
-					
+				
+				randAlcolve = Math.random() * 6;
+				
 				//ajout de la room 8 dans le tableau definitif
+				tab[rand].printRoom();
+				tab[rand].addAlcolve(randAlcolve);
 				_level.push(tab[rand]);
 				_level[index].placeRoom(X, Y);
 				
@@ -583,9 +629,12 @@ package
 				var room:Room ;
 				var row:int = 0;
 				var col:int = 0;
+				var enemy:Enemy;
+				var indexEnemy:int = 0;
 				for (var h:int = 0; h < _level.length; h++)
 				{
 					room = _generator.RecreateRoom(_level[h]._id, _level[h]._T, _level[h]._R, _level[h]._B, _level[h]._L);
+					room.addAlcolve(_level[h]._alcolve);
 					add(room);
 					room.placeRoom(col * 300, row * 300);
 					row ++;
@@ -593,6 +642,17 @@ package
 					{
 						col ++;
 						row = 0;
+					}
+					
+					if (h != 0)
+					{	
+						if (Math.random() * 3 < 2)
+						{
+							var pos:int = Math.random() * 4;
+							enemy = new Enemy(index, room.spawns[pos].x, room.spawns[pos].y);
+							indexEnemy++;
+							add(enemy);
+						}
 					}
 				}
 		}

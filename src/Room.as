@@ -1,5 +1,6 @@
 package  
 {
+	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.Mask;
 	import net.flashpunk.Graphic;
@@ -20,8 +21,12 @@ package
 		public var _B:int;
 		public var _L:int;
 		
+		public var _alcolve:int;
+		
 		public var X:int = 0;
 		public var Y:int = 0;
+		
+		public var spawns:Vector.<Point>;
 		
 		public function Room(ID:int,  t:int, r:int, b:int, l:int, x:Number = 0, y:Number = 0, graphic:Graphic = null, mask:Mask = null) 
 		{
@@ -32,12 +37,36 @@ package
 			_R = r;
 			_B = b;
 			_L = l;
+		
+			spawns = new Vector.<Point>();
+			
+		}
+		
+		public function addAlcolve(alc:int):void
+		{
+			_alcolve = alc;
+			
+		}
+		
+		public function printRoom():void
+		{
+			//trace("room:"+_id+",T:"+_T+",R:"+_R+",B:"+_B+",L:"+_L);
 		}
 		
 		public function placeRoom(x:int, y:int):void
 		{
 			X = x;
 			Y = y;
+			
+			var point:Point = new Point(X + 60, Y + 60);
+			spawns.push(point);
+			point = new Point(X + 240, Y + 60);
+			spawns.push(point);
+			point = new Point(X + 60, Y + 240);
+			spawns.push(point);
+			point = new Point(X + 240, Y + 240);
+			spawns.push(point);
+			
 			//trace("place X:" + X + " Y:" + Y);
 		}
 		
@@ -99,6 +128,69 @@ package
 				var mobi:Mobilier = new Mobilier(X+30, Y +30);
 				Level.ref.add(mobi);
 			//}
+			
+			var coin:int = Math.random() * 4;
+			
+			var alco:alcolve;
+			
+			if (coin == 0)
+			{
+				var r:int = Math.random() * 2;
+				if (r == 0)
+				{
+					alco = new alcolve(2, 1, 2);
+				}
+				else if (r == 1)
+				{
+					alco = new alcolve(2, 2, 2);
+				}
+				
+				alco.placeAlcolve(X, Y);
+			}
+			else if (coin == 1)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					alco = new alcolve(2, 1, 2);
+					alco.placeAlcolve(X+(7*30), Y);
+				}
+				else if (r == 1)
+				{
+					alco = new alcolve(2, 2, 1);
+					alco.placeAlcolve(X + (7 * 30), Y);
+				}
+			}
+			else if (coin == 2)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					alco = new alcolve(2, 1, 1);
+					alco.placeAlcolve(X, Y+(6*30));
+				}
+				else if (r == 1)
+				{
+					alco = new alcolve(2, 2, 2);
+					alco.placeAlcolve(X, Y + (7 * 30));
+				}
+			}
+			else if (coin == 3)
+			{
+				r = Math.random() * 2;
+				if (r == 0)
+				{
+					alco = new alcolve(2, 1, 1);
+					alco.placeAlcolve(X+(7*30), Y+(6*30));
+				}
+				else if (r == 1)
+				{
+					alco = new alcolve(2, 2, 1);
+					alco.placeAlcolve(X + (7 * 30), Y + (7 * 30));
+				}
+			}
+			
+			alco.draw();
 		}
 		
 		public function placeWall():void
@@ -113,24 +205,6 @@ package
 				}
 				else
 				{
-					/*if (j == 0)
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (j == 9)
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(7, X +  0 * 30, Y + j * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -146,18 +220,6 @@ package
 				}
 				else
 				{
-					/*if (k == 9)
-					{
-						TileTemp = new Tile(9, X +  k * 30, Y + 0 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(5, X +  k * 30, Y + 0 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(5, X +  k * 30, Y + 0 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -173,24 +235,6 @@ package
 				}
 				else
 				{
-					/*if (n == 0)
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (n == 9)
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(4, X +  n * 30, Y + 9 * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
@@ -206,24 +250,6 @@ package
 				}
 				else
 				{
-					/*if (l == 0)
-					{
-						TileTemp = new Tile(9, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else if (l == 9)
-					{
-						TileTemp = new Tile(11, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}
-					else
-					{
-						TileTemp = new Tile(6, X +  9 * 30, Y + l * 30);
-						TileTemp.type = "mur";
-						tilesWall.push(TileTemp);
-					}*/
 					TileTemp = new Tile(6, X +  9 * 30, Y + l * 30);
 					TileTemp.type = "mur";
 					tilesWall.push(TileTemp);
