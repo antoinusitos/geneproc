@@ -35,6 +35,22 @@ package
 			{
 				die();
 			}
+			else if (collide("mur",x+1,y)!=null) 
+			{
+				die();
+			}
+			else if (collide("mur",x-1,y)!=null) 
+			{
+				die();
+			}
+			else if (collide("mur",x,y+1)!=null) 
+			{
+				die();
+			}
+			else if (collide("mur",x,y-1)!=null) 
+			{
+				die();
+			}
 		}
 		
 		override public function added():void 

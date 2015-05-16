@@ -63,6 +63,7 @@ package
 			player.add("hit", [5, 0], 5, true);
 			player.add("walk", [1, 0, 2, 0], 10, true);
 			player.add("dead", [3], 1, false);
+			player.add("pistol", [4], 1, true);
 			
 			spr_dead.add("idle", [0], 1, false);
 			
@@ -89,7 +90,17 @@ package
 					graphic = spr_dead;
 					var Thebullet:EnemyBullet = EnemyBullet(collide("enemybullet", x, y));
 					spr_dead.angle = FP.angle(FP.halfWidth , FP.halfHeight, Thebullet.originBulletX, Thebullet.originBulletY);
-					TweenMax.delayedCall(1, die);
+					die();
+					TweenMax.delayedCall(1, generate);
+				}
+				else if (collide("enemymelee", x, y) != null)
+				{
+					dead = true;
+					graphic = spr_dead;
+					var TheMelee:EnemyMelee = EnemyMelee(collide("enemymelee", x, y));
+					spr_dead.angle = FP.angle(FP.halfWidth , FP.halfHeight, TheMelee.originBulletX, TheMelee.originBulletY);
+					die();
+					TweenMax.delayedCall(1, generate);
 				}
 			
 				if (!canShoot)
@@ -204,11 +215,17 @@ package
 				
 				if (move && ! isReloading)
 				{
-					player.play("walk");
+					if(weapon == 0)
+						player.play("walk");
+					else
+						player.play("pistol");
 				}
 				else if(!isReloading)
 				{
-					player.play("idle");
+					if(weapon == 0)
+						player.play("idle");
+					else
+						player.play("pistol");
 				}
 				
 				FP.camera.x = (x - FP.halfWidth - (FP.halfWidth - FP.screen.mouseX)/2) + ((FP.screen.mouseX) / 50);
@@ -233,9 +250,83 @@ package
 			
 		}
 		
+		public function changeAnimationWeapon():void
+		{
+			if (weapon == 1)
+			{
+				player.play("pistol");
+				trace("pistol");
+			}
+			else
+			{
+				player.play("idle");
+			}
+		}
+		
 		public function die():void
 		{
+			
+			var blood0:blood = new blood(x, y);
+			var blood1:blood = new blood(x, y);
+			var blood2:blood = new blood(x, y);
+			var blood3:blood = new blood(x, y);
+			var blood4:blood = new blood(x, y);
+			var blood5:blood = new blood(x, y);
+			var blood6:blood = new blood(x, y);
+			var blood7:blood = new blood(x, y);
+			var blood8:blood = new blood(x, y);
+			var blood9:blood = new blood(x, y);
+			/*var destX:Number = x;
+			if (Level.ref.player.x > x)
+				destX = x - 10;
+			else if (Level.ref.player.x < x)
+				destX = x + 10;*/
+			var dest0:Point = FindDestionationPointde();
+			var dest1:Point = FindDestionationPointde();
+			var dest2:Point = FindDestionationPointde();
+			var dest3:Point = FindDestionationPointde();
+			var dest4:Point = FindDestionationPointde();
+			var dest5:Point = FindDestionationPointde();
+			var dest6:Point = FindDestionationPointde();
+			var dest7:Point = FindDestionationPointde();
+			var dest8:Point = FindDestionationPointde();
+			var dest9:Point = FindDestionationPointde();
+			Level.ref.add(blood0);
+			Level.ref.add(blood1);
+			Level.ref.add(blood2);
+			Level.ref.add(blood3);
+			Level.ref.add(blood4);
+			Level.ref.add(blood5);
+			Level.ref.add(blood6);
+			Level.ref.add(blood7);
+			Level.ref.add(blood8);
+			Level.ref.add(blood9);
+			var vitesse:Number = 0.2;
+			TweenMax.to(blood0, vitesse, { x:dest0.x , y:dest0.y  } );
+			TweenMax.to(blood1, vitesse, { x:dest1.x , y:dest1.y  } );
+			TweenMax.to(blood2, vitesse, { x:dest2.x , y:dest2.y  } );
+			TweenMax.to(blood3, vitesse, { x:dest3.x , y:dest3.y  } );
+			TweenMax.to(blood4, vitesse, { x:dest4.x , y:dest4.y  } );
+			TweenMax.to(blood5, vitesse, { x:dest5.x , y:dest5.y  } );
+			TweenMax.to(blood6, vitesse, { x:dest6.x , y:dest6.y  } );
+			TweenMax.to(blood7, vitesse, { x:dest7.x , y:dest7.y  } );
+			TweenMax.to(blood8, vitesse, { x:dest8.x , y:dest8.y  } );
+			TweenMax.to(blood9, vitesse, { x:dest9.x , y:dest9.y  } );
+			
+		}
+		
+		public function generate():void
+		{
+			Level.ref.StopMusic();
 			FP.world = new Level;
+		}
+		
+		public function FindDestionationPointde():Point
+		{
+			var retour:Point = new Point();
+			retour.x = x + x - Level.ref.player.x + Math.random() * 30 - 30
+			retour.y = y + y - Level.ref.player.y + Math.random() * 30 - 30
+			return retour;
 		}
 		
 	}

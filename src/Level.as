@@ -1,5 +1,7 @@
 package  
 {
+	import flash.system.System;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.World;
@@ -21,7 +23,14 @@ package
 		
 		public var target:Cursor;
 		
+		public var timer:time;
+		
+		public var myTime:Number;
+		
 		public static var ref:Level;
+		
+		public var music1:Sfx  = new Sfx (Embed.LEVEL1);
+		public var music2:Sfx  = new Sfx (Embed.LEVEL2);
 		
 		public function Level() 
 		{
@@ -36,6 +45,8 @@ package
 			_generator.createRooms(this);
 			
 			Generate();
+			
+			myTime = 0;
 		}
 		
 		override public function begin():void {
@@ -50,15 +61,39 @@ package
 			
 			player = new Player(150, 150);
 			add(player);
+			
+			timer = new time(0, 0);
+			add(timer)
+			
+			var rand:Number = Math.random() * 2;
+			if (rand > 1 )
+			{
+				music1.play();
+				music1.loop();
+			}
+			else
+			{
+				music2.play();
+				music2.loop();
+			}
 		}
 		
 		override public function update():void 
 		{
 			super.update();
 			
+			myTime += FP.elapsed;
+			var spliter:Array = myTime.toString().split(".");
+			timer.setText(spliter[0]+"."+spliter[1].substring(0, 2));
+			
 			if (Input.check(Key.SPACE))
 			{
+				StopMusic();
 				FP.world = new Level;
+			}
+			if (Input.check(Key.ESCAPE))
+			{
+				FP.world = new Menu;
 			}
 			
 			if (Input.released(Key.C))
@@ -77,8 +112,16 @@ package
 			
 		}
 		
+		public function StopMusic():void
+		{
+			music1.stop();
+			music2.stop();
+		}
+		
 		public function Generate():void
 		{
+			myTime = 0;
+			
 			//tableau des rooms temporaires
 			var tab:Vector.<Room> = new Vector.<Room>();
 			var index:int = 0;
@@ -643,13 +686,14 @@ package
 						col ++;
 						row = 0;
 					}
-					
+					//placement des ennemis
 					if (h != 0)
 					{	
 						if (Math.random() * 3 < 2)
 						{
+							var weap:Number = Math.random() * 2;
 							var pos:int = Math.random() * 4;
-							enemy = new Enemy(index, room.spawns[pos].x, room.spawns[pos].y);
+							enemy = new Enemy(index, weap, room.spawns[pos].x, room.spawns[pos].y);
 							indexEnemy++;
 							add(enemy);
 						}

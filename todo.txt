@@ -12,10 +12,12 @@ retours:
 
 1-régler les soucis de génération (voir avec armel pour confirmation fait)
 2-point central se rapproche du joueur ou maximum sur la camera (voir avec armel pour confirmation fait)
-3-diversité des salles, rajout de mur ou autres
-4-plusieurs spawner par salles
+3-diversité des salles, rajout de mur ou autres(fait)
+4-plusieurs spawner par salles(fait)
 5-enemis suivent le joueur
-6-tache de sang en tween
+6-tache de sang en tween(en cours)
 7-enemy me voit
-8-collisions mal placés
+8-collisions mal placés(fait)
 9-enemy ne tirent pas tous
+10-enemy meurrent dans le sens du tir(fait)
+11-placer du mobilier(en cours)

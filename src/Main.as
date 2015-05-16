@@ -16,9 +16,10 @@ package
 		{
 			super(400, 300, 60, false);
 			
+			var mainMenu:Menu = new Menu
 			niv = new Level;
 			
-			FP.world = niv;
+			FP.world = mainMenu;
 			FP.screen.scale = 2;
 		}
 		

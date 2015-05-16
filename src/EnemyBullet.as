@@ -39,9 +39,21 @@ package
 			{
 				die();
 			}
-			else if (collide("player", x, y) != null)
+			else if (collide("mur",x+1,y)!=null) 
 			{
-				//FP.world = new Level;
+				die();
+			}
+			else if (collide("mur",x-1,y)!=null) 
+			{
+				die();
+			}
+			else if (collide("mur",x,y+1)!=null) 
+			{
+				die();
+			}
+			else if (collide("mur",x,y-1)!=null) 
+			{
+				die();
 			}
 		}
 		

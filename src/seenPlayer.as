@@ -29,7 +29,7 @@ package
 			var img:Image = Image.createRect(5, 5, 0x0000FF);
 			img.centerOrigin();
 			
-			graphic = img;
+			//graphic = img;
 
 		}
 		
@@ -63,31 +63,31 @@ package
 			else if (collide("player", x, y))
 			{
 				see = true;
-				trace("0");
+				//trace("0");
 				//Level.ref.remove(this);
 			}
 			else if (collide("player", x+1, y))
 			{
 				see = true;
-				trace("x+1");
+				//trace("x+1");
 				//Level.ref.remove(this);
 			}
 			else if (collide("player", x-1, y))
 			{
 				see = true;
-				trace("x-1");
+				//trace("x-1");
 				//Level.ref.remove(this);
 			}
 			else if (collide("player", x, y+1))
 			{
 				see = true;
-				trace("y+1");
+				//trace("y+1");
 				//Level.ref.remove(this);
 			}
 			else if (collide("player", x, y-1))
 			{
 				see = true;
-				trace("y-1");
+				//trace("y-1");
 				//Level.ref.remove(this);
 			}
 			
